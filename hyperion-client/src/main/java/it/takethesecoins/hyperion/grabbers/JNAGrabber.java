@@ -1,5 +1,7 @@
 package it.takethesecoins.hyperion.grabbers;
+import java.awt.Dimension;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.DataBuffer;
@@ -10,10 +12,10 @@ import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
 
 import com.sun.jna.Native;
-import com.sun.jna.win32.W32APIOptions;
 import com.sun.jna.platform.win32.WinDef;
-import com.sun.jna.platform.win32.WinNT;
 import com.sun.jna.platform.win32.WinGDI;
+import com.sun.jna.platform.win32.WinNT;
+import com.sun.jna.win32.W32APIOptions;
 
 /**
  * Gran screen pixels using JNA (Windows)
@@ -25,6 +27,11 @@ public class JNAGrabber extends AbsGrabber{
 
 	@Override
 	protected BufferedImage getScreenshot() {
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int screenHeight = screenSize.height;
+		int	screenWidth = screenSize.width;
+		
 		Rectangle bounds = new Rectangle(0, 0, screenWidth, screenHeight);
 		return getScreenshot(bounds);
 	}

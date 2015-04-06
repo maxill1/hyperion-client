@@ -16,10 +16,6 @@ public abstract class AbsGrabber {
 	private boolean gogogo = true;
 	private ImageDrawer drawer = new ImageDrawer();
 
-	//TODO extract somehow from current screen
-	protected int screenWidth = 1920;
-	protected int screenHeight = 1080;
-
 	/**
 	 * Start a grabber
 	 * @throws Exception
