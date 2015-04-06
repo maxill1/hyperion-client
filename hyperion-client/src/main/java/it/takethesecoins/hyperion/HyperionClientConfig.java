@@ -10,7 +10,9 @@ public class HyperionClientConfig {
 
 	private static Properties prop = new Properties();
 	static{
-		init(null);
+		if(prop.size()==0){
+			init(null);
+		}
 	}
 	public static String getProperty(String key) {
 		return prop.getProperty(key);
@@ -22,7 +24,13 @@ public class HyperionClientConfig {
 			if(fileConfigPath!=null){
 				io = new FileInputStream(fileConfigPath);
 			}else{
-				io = HyperionClientConfig.class.getResourceAsStream("/hyperion.config");
+				try {
+
+					io = HyperionClientConfig.class.getResourceAsStream("/hyperion.config");
+				} catch (Exception e) {
+					//TODO tempfix per export in /resources
+					io = HyperionClientConfig.class.getResourceAsStream("/resources/hyperion.config");
+				}
 			}
 			prop.load(io);
 		} catch (IOException e) {

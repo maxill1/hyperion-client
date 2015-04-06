@@ -20,6 +20,10 @@ public class HyperionClient {
 					if(param.toLowerCase().equals("-f")){
 						forceStop = true;
 					}
+					if(param.toLowerCase().startsWith("-c")){
+						String file = param.substring(2);
+						HyperionClientConfig.init(file);
+					}
 					//TODO user config
 					//TODO alt grabber
 				}
