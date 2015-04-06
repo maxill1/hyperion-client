@@ -1,0 +1,10 @@
+compiler.compileProtoFiles=true
+compiler.javaCodeGenerationEnabled=true
+compiler.javaOutputDirectory=src/main/java
+compiler.protocFilePath=D\:\\Sviluppo\\IDE\\libs\\protoc\\protoc.exe
+compiler.useProtocInCustomPath=true
+compiler.useProtocInSystemPath=false
+eclipse.preferences.version=1
+paths.directoryPaths=${workspace_loc\:/${project}/src/main/java/hyperion}
+paths.filesInMultipleDirectories=true
+paths.filesInOneDirectoryOnly=false
