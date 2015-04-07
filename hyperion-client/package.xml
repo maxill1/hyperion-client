@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project hyperion-client with libraries in sub-folder">
+    <!--ANT 1.7 is required                                        -->
+	<property name="workspace_loc" value="${basedir}/.."></property>
+    <target name="create_run_jar">
+        <jar destfile="${workspace_loc}/binaries/hyperion-client.jar">
+            <manifest>
+                <attribute name="Main-Class" value="it.takethesecoins.hyperion.HyperionClient"/>
+                <attribute name="Class-Path" value=". hyperion-client_lib/jna-platform-4.1.0.jar hyperion-client_lib/jna-4.1.0.jar hyperion-client_lib/platform-3.5.2.jar"/>
+            </manifest>
+            <fileset dir="${workspace_loc}/hyperion-client/target/classes"/>
+        </jar>
+        <delete dir="${workspace_loc}/binaries/hyperion-client_lib"/>
+        <mkdir dir="${workspace_loc}/binaries/hyperion-client_lib"/>
+        <copy file=" ${user.home}/.m2/repository/net/java/dev/jna/jna-platform/4.1.0/jna-platform-4.1.0.jar" todir="${workspace_loc}/binaries/hyperion-client_lib"/>
+        <copy file=" ${user.home}/.m2/repository/net/java/dev/jna/jna/4.1.0/jna-4.1.0.jar" todir="${workspace_loc}/binaries/hyperion-client_lib"/>
+        <copy file=" ${user.home}/.m2/repository/net/java/dev/jna/platform/3.5.2/platform-3.5.2.jar" todir="${workspace_loc}/binaries/hyperion-client_lib"/>
+        <copy file=" ${user.home}/.m2/repository/com/google/protobuf/protobuf-java/2.6.1/protobuf-java-2.6.1.jar" todir="${workspace_loc}/binaries/hyperion-client_lib"/>
+    </target>
+</project>
