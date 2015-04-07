@@ -91,7 +91,12 @@ public abstract class AbsGrabber {
 	 */
 	public void stop() {
 		gogogo = false;
-
+		//wait a moment...
+        try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+		}
+		drawer.clear();
 		removeLock();
 	}
 
@@ -109,5 +114,23 @@ public abstract class AbsGrabber {
 	 * @return
 	 */
 	protected abstract BufferedImage getScreenshot();
+
+	/**
+	 * Get a grabber implementation
+	 * @param grabImpl
+	 * @return
+	 */
+	public static AbsGrabber getImpl(String grabImpl) {
+
+		String pack = AbsGrabber.class.getPackage().getName();
+
+		try {
+			Class<? extends AbsGrabber> grabberClass = (Class<? extends AbsGrabber>) AbsGrabber.class.forName(pack+"."+grabImpl);
+			return grabberClass.newInstance();
+		} catch (Exception e) {
+			System.out.println("Cannot load grabber '"+grabImpl+"':"+e.getMessage());
+		}
+		return new JNAGrabber();
+	}
 
 }
